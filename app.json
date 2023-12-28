@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "08932c3d-c659-499b-b3d8-7116c4d0ddd4"
+      }
+    },
+    "android": {
+      "package": "com.sourcefile.steelghar"
+    }
+  }
+}
