@@ -100,7 +100,10 @@ const Account2 = ({ navigation }) => {
           </View>
           <View style={style.thirdcontainer}>
             <Text style={style.SubHeading}>Earn With Steel Ghar</Text>
-            <TouchableOpacity style={style.signup}>
+            <TouchableOpacity
+              style={style.signup}
+              onPress={() => navigation.navigate("FabricatorSignup")}
+            >
               <Text style={[style.content, { color: "white" }]}>
                 Signup as Fabricator
               </Text>

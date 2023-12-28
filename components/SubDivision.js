@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { perfectSize } from "./Login";
-import { Image } from "expo-image";
+
 import { AntDesign } from "@expo/vector-icons";
 import Navbar from "./Navbar";
 import { Ionicons } from "@expo/vector-icons";

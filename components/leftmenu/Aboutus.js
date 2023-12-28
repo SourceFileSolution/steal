@@ -23,11 +23,39 @@ const Aboutus = ({ navigation }) => {
             <Text style={styles.headings}>About us</Text>
           </View>
         </View>
-        <View>
-          <Text>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis,
-            debitis?
-          </Text>
+        <View
+          style={{
+            marginHorizontal: perfectSize(20),
+            marginVertical: perfectSize(10),
+          }}
+        >
+          <View>
+            <Text style={styles.content}>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis,
+              debitis?
+            </Text>
+          </View>
+          <View style={{ marginVertical: perfectSize(10) }}>
+            <Text style={styles.content}>Lorem, ipsum dolor.</Text>
+          </View>
+          <View>
+            <Text
+              style={[styles.Subheadings, { marginBottom: perfectSize(10) }]}
+            >
+              Company Values
+            </Text>
+            <Text style={styles.content}>Lorem, ipsum.</Text>
+            <Text style={styles.content}>Lorem, ipsum.</Text>
+            <Text style={styles.content}>Lorem, ipsum.</Text>
+          </View>
+          <View>
+            <Text
+              style={[styles.Subheadings, { marginVertical: perfectSize(10) }]}
+            >
+              Mission Elobration
+            </Text>
+            <Text style={styles.content}>Lorem, ipsum dolor.</Text>
+          </View>
         </View>
       </View>
     </>
@@ -55,5 +83,13 @@ const styles = StyleSheet.create({
     fontSize: perfectSize(16),
     alignSelf: "center",
     marginRight: perfectSize(40),
+  },
+  content: {
+    fontFamily: "Montserrat_500Medium",
+    fontSize: perfectSize(14),
+  },
+  Subheadings: {
+    fontFamily: "Montserrat_600SemiBold",
+    fontSize: perfectSize(16),
   },
 });

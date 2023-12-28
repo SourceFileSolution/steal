@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Text } from "react-native";
+
 import HomeContent from "./HomeContent";
 
 import Cart from "./Cart";
@@ -13,19 +13,28 @@ import LeftMenu from "../LeftMenu";
 import Aboutus from "../leftmenu/Aboutus";
 import ExpertAdvice from "../leftmenu/ExpertAdvice";
 import Support from "../leftmenu/Support";
+import Signup from "../Signup";
+import Login from "../Login";
+import FabricatorRegistrations from "../FabricatorRegistrations";
 
 const Homestack = () => {
   const stack = createStackNavigator();
   return (
     <stack.Navigator screenOptions={{ headerShown: false }}>
       <stack.Screen name="home" component={HomeContent} />
-      <stack.Screen name="Wishlist" component={Wishlist2} />
+      <stack.Screen name="Wishlist" component={Wishlist3} />
 
-      <stack.Screen name="Cart" component={Cart} />
+      <stack.Screen name="Cart" component={Cart1} />
       <stack.Screen name="leftmenu" component={LeftMenu} />
       <stack.Screen name="Aboutus" component={Aboutus} />
       <stack.Screen name="ExpertAdvice" component={ExpertAdvice} />
       <stack.Screen name="Support" component={Support} />
+      <stack.Screen name="Signupuser" component={Signup} />
+      <stack.Screen name="Login" component={Login} />
+      <stack.Screen
+        name="FabricatorSignup"
+        component={FabricatorRegistrations}
+      />
     </stack.Navigator>
   );
 };

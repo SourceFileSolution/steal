@@ -1,12 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
 import LeftMenu from "../LeftMenu";
-
 import TabNavigation from "../TabNavigation";
-import { NavigationContainer } from "@react-navigation/native";
-
 const Home = ({ navigation }) => {
   const drawer = createDrawerNavigator();
 

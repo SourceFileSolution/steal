@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Image,
 } from "react-native";
 import React from "react";
 import { perfectSize } from "./Login";
@@ -13,7 +14,7 @@ import {
   Montserrat_600SemiBold,
   Montserrat_800ExtraBold,
 } from "@expo-google-fonts/montserrat";
-import { Image } from "expo-image";
+
 import { AntDesign } from "@expo/vector-icons";
 import Navbar from "./Navbar";
 const CategoryContent = ({ navigation }) => {
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     },
   },
   image: {
-    resizeMode: "contentFit",
+    resizeMode: "contain",
     width: "auto",
     height: perfectSize(80),
     borderRadius: 3,

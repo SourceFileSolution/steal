@@ -4,7 +4,6 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  Text,
 } from "react-native";
 import React from "react";
 import { EvilIcons } from "@expo/vector-icons";

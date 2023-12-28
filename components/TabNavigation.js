@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -23,7 +23,7 @@ const TabNavigation = () => {
     // <NavigationContainer>
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar style="dark" />
-      {/* <Navbar /> */}
+
       <tab.Navigator>
         <tab.Screen
           name="Home"
@@ -78,7 +78,6 @@ const TabNavigation = () => {
                   name="calculator"
                   size={perfectSize(22)}
                   color={"white"}
-                  // style={{marg}}
                 />
               </View>
             ),
@@ -103,7 +102,7 @@ const TabNavigation = () => {
         />
         <tab.Screen
           name="Account"
-          component={AccountContent}
+          component={Account2}
           options={{
             tabBarLabel: "Account",
             headerShown: false,
@@ -118,7 +117,6 @@ const TabNavigation = () => {
         />
       </tab.Navigator>
     </SafeAreaView>
-    // </NavigationContainer>
   );
 };
 

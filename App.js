@@ -17,9 +17,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import DropdownExample from "./components/Sample";
 import Home from "./components/home/Home";
-import axios from axios;
-const Stack = createStackNavigator();
 
+const Stack = createStackNavigator();
 
 export default function App() {
   return (

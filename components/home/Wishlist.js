@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { perfectSize } from "../Login";
-import { Image } from "expo-image";
+
 import { Ionicons } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
+
 import Navbar from "../Navbar";
 const Wishlist = ({ navigation }) => {
   return (

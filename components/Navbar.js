@@ -1,11 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 
 import { perfectSize } from "./Login";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-
-import { Image } from "expo-image";
 
 const Navbar = ({ navigation }) => {
   const [cart, setCart] = useState();

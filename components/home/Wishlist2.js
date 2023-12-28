@@ -1,12 +1,12 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import { perfectSize } from "../Login";
-import { Image } from "expo-image";
+
 import { Ionicons } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
+
 import { AntDesign } from "@expo/vector-icons";
 import Navbar from "../Navbar";
-import { navigation } from "@react-navigation/drawer";
+
 const Wishlist2 = ({ navigation }) => {
   const [active, setActive] = useState(1);
   const data = [

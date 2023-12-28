@@ -77,7 +77,7 @@ const LeftMenu = ({ props, navigation }) => {
                   { color: "black", lineHeight: perfectSize(50) },
                 ]}
               >
-                Support
+                Help and Support
               </Text>
             </TouchableOpacity>
           </View>
@@ -89,7 +89,10 @@ const LeftMenu = ({ props, navigation }) => {
               alignItems: "center",
             }}
           >
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("Signupuser")}
+            >
               <Text style={styles.button.text}>SignUp as User</Text>
             </TouchableOpacity>
           </View>

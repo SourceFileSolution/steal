@@ -32,7 +32,10 @@ const AccountContent = ({ navigation }) => {
               <Text style={styles.content}>Login To Get Exclusive Perks</Text>
             </View>
             <View>
-              <TouchableOpacity style={styles.logbuttun}>
+              <TouchableOpacity
+                style={styles.logbuttun}
+                onPress={() => navigation.navigate("Login")}
+              >
                 <Text style={[styles.content, { color: "white" }]}>Login</Text>
               </TouchableOpacity>
             </View>
@@ -59,7 +62,10 @@ const AccountContent = ({ navigation }) => {
         </View>
         <View style={styles.thirdContainer}>
           <Text style={styles.headings}>Earn With Steel Ghar</Text>
-          <TouchableOpacity style={styles.signup}>
+          <TouchableOpacity
+            style={styles.signup}
+            onPress={() => navigation.navigate("FabricatorSignup")}
+          >
             <Text style={[styles.content, { color: "white" }]}>
               Signup as Fabricator
             </Text>
