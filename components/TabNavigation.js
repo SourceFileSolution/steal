@@ -21,7 +21,7 @@ const TabNavigation = () => {
   const tab = createBottomTabNavigator();
   return (
     // <NavigationContainer>
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <StatusBar style="dark" />
 
       <tab.Navigator>

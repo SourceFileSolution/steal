@@ -32,11 +32,19 @@ const Aboutus = ({ navigation }) => {
           <View>
             <Text style={styles.content}>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis,
-              debitis?
+              debitis? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Numquam suscipit quas quam voluptatem adipisci cumque optio? Quam,
+              cumque provident aut corporis modi aliquam expedita laborum, et
+              aliquid ipsa totam esse optio dolore impedit voluptas ad
+              explicabo, ea corrupti sed a quo facilis nulla recusandae. Est
+              similique eos impedit iusto totam?
             </Text>
           </View>
           <View style={{ marginVertical: perfectSize(10) }}>
-            <Text style={styles.content}>Lorem, ipsum dolor.</Text>
+            <Text style={styles.content}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
+              quia deserunt iste adipisci enim corrupti!
+            </Text>
           </View>
           <View>
             <Text
@@ -44,9 +52,21 @@ const Aboutus = ({ navigation }) => {
             >
               Company Values
             </Text>
-            <Text style={styles.content}>Lorem, ipsum.</Text>
-            <Text style={styles.content}>Lorem, ipsum.</Text>
-            <Text style={styles.content}>Lorem, ipsum.</Text>
+            <Text style={styles.content}>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam
+              et velit ratione soluta ipsum placeat quo nostrum repellendus odio
+              praesentium.
+            </Text>
+            <Text style={styles.content}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consectetur alias ratione, magnam porro ipsam perspiciatis
+              voluptatem. Voluptatibus mollitia corrupti explicabo.
+            </Text>
+            <Text style={styles.content}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet aut
+              voluptas maiores laboriosam illo quae esse suscipit dolorem
+              aperiam doloribus?
+            </Text>
           </View>
           <View>
             <Text
@@ -54,7 +74,11 @@ const Aboutus = ({ navigation }) => {
             >
               Mission Elobration
             </Text>
-            <Text style={styles.content}>Lorem, ipsum dolor.</Text>
+            <Text style={styles.content}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+              consequatur aliquid porro nisi a pariatur soluta, commodi repellat
+              aut esse.
+            </Text>
           </View>
         </View>
       </View>

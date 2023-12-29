@@ -38,9 +38,9 @@ const FabricatorRegistrations = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <StatusBar style="light" />
-      <ScrollView style={{ flex: 1, backgroundColor: "whitesmoke" }}>
+      <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
         <View style={style.header}>
-          <View style={{ marginTop: perfectSize(30) }}>
+          <View>
             <Image
               source={require("../assets/Logo2.jpg")}
               style={{
@@ -171,7 +171,7 @@ const style = StyleSheet.create({
   header: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+    marginTop: perfectSize(30),
   },
 
   inputContainer: {
@@ -179,6 +179,7 @@ const style = StyleSheet.create({
     borderTopEndRadius: perfectSize(20),
     borderTopStartRadius: perfectSize(20),
     backgroundColor: "whitesmoke",
+    paddingVertical: perfectSize(20),
   },
   inputfield: {
     flexDirection: "row",
@@ -189,7 +190,7 @@ const style = StyleSheet.create({
     height: perfectSize(55),
     alignItems: "center",
     padding: perfectSize(10),
-    marginTop: perfectSize(20),
+    marginTop: perfectSize(30),
     text: {
       marginHorizontal: perfectSize(40),
       fontFamily: "Montserrat_600SemiBold",
