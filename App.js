@@ -31,16 +31,7 @@ export default function App() {
     </Stack.Navigator>
     </NavigationContainer>
     </SafeAreaView>
-      {/* <Login /> */}
-      {/* <FabricatorRegistrations /> */}
-      {/* <Signup /> */}
-      {/* <Otp /> */}
-      {/* <SafeAreaView style={{ flex: 1 }}>
-        <NavigationContainer>
-          <Home />
-        </NavigationContainer>
-      </SafeAreaView> */}
-      {/* {/* <StatusBar style="dark" /> */}
+     
     </>
   );
 }
