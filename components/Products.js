@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Modal,
 } from "react-native";
 import React, { useState } from "react";
 import { perfectSize } from "./Login";
@@ -23,8 +24,10 @@ import Navbar from "./Navbar";
 import { Ionicons } from "@expo/vector-icons";
 
 const Products = ({ navigation }) => {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
   const [grid, setGrid] = useState(true);
-  const [selectedPrice, setSelectedPrice] = useState();
+
   let [fontsLoaded] = useFonts({
     Montserrat_500Medium,
     Montserrat_600SemiBold,
@@ -34,11 +37,18 @@ const Products = ({ navigation }) => {
   if (!fontsLoaded) {
     return null;
   }
-  const setboxgrid = () => {
-    setGrid(true);
+  const options = [
+    { label: "Price : Low to High", value: "Price : Low to High" },
+    { label: "Price : High to Low", value: "Price : High to Low" },
+  ];
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
   };
-  const setboxlist = () => {
-    setGrid(false);
+
+  const handleOptionSelect = (value) => {
+    setSelectedOption(value);
+    setDropdownVisible(false);
   };
   return (
     <>
@@ -63,15 +73,8 @@ const Products = ({ navigation }) => {
           <View style={{ flexDirection: "row" }}>
             <View style={{ flex: 0, marginLeft: perfectSize(10) }}>
               <TouchableOpacity
-                style={{
-                  backgroundColor: "whitesmoke",
-                  width: perfectSize(100),
-                  height: perfectSize(45),
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: perfectSize(10),
-                  flexDirection: "row",
-                }}
+                style={styles.sortbutton}
+                onPress={toggleDropdown}
               >
                 <Text
                   style={{
@@ -158,6 +161,64 @@ const Products = ({ navigation }) => {
           <View style={{ height: perfectSize(50) }}></View>
         </View>
       </ScrollView>
+      <Modal
+        visible={dropdownVisible}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setDropdownVisible(false)}
+      >
+        <View style={styles.modelcontainer}>
+          <View
+            style={{ backgroundColor: "white", padding: 20, borderRadius: 10 }}
+          >
+            {options.map((option) => (
+              <TouchableOpacity
+                key={option.value}
+                onPress={() => handleOptionSelect(option.value)}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginVertical: 10,
+                  }}
+                >
+                  <Text
+                    style={{
+                      marginRight: 10,
+                      fontFamily: "Montserrat_500Medium",
+                      fontSize: perfectSize(16),
+                    }}
+                  >
+                    {option.label}
+                  </Text>
+                  <View style={{ flex: 1, alignItems: "flex-end" }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderWidth: 1,
+                        borderRadius: 10,
+                        borderColor: "red",
+                      }}
+                    >
+                      {selectedOption === option.value && (
+                        <View
+                          style={{
+                            flex: 1,
+                            backgroundColor: "red",
+                            borderRadius: 10,
+                          }}
+                        />
+                      )}
+                    </View>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      </Modal>
       <View style={styles.proceed}>
         <TouchableOpacity style={styles.proceed.button}>
           <Text style={styles.proceed.text}>Proceed</Text>
@@ -286,5 +347,19 @@ const styles = StyleSheet.create({
     fontSize: perfectSize(16),
     alignSelf: "center",
     marginRight: perfectSize(40),
+  },
+  sortbutton: {
+    backgroundColor: "whitesmoke",
+    width: perfectSize(100),
+    height: perfectSize(45),
+    alignItems: "center",
+    justifyContent: "center",
+    padding: perfectSize(10),
+    flexDirection: "row",
+  },
+  modelcontainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });

@@ -34,7 +34,7 @@ export default function App() {
       {/* <FabricatorRegistrations /> */}
       {/* <Signup /> */}
       {/* <Otp /> */}
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
         <NavigationContainer>
           <Home />
         </NavigationContainer>
