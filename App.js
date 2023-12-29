@@ -8,7 +8,6 @@ import Otp from "./components/Otp";
 
 import TabNavigation from "./components/TabNavigation";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import HorizontalImageScroller from "./components/Category";
 import YourComponent from "./components/Category";
 import LeftMenu from "./components/LeftMenu";
