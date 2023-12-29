@@ -12,16 +12,18 @@ const Category = () => {
 const [component, setComponent]=useState("category");
 const [categoryId,setCategoryId]=useState('');
 const [subCategories,setSubcategories]=useState('');
+const [division,setDivisions]=useState('');
+
   useEffect(()=>{
 alert("got cate id")
-  },[categoryId])
+  },[categoryId,subCategories])
   return (
     
     <View>
       {
         component=='category'?<Index categories={data.categories} setComponent={setComponent} setCategoryId={setCategoryId}/>
-        : component=='subcategory'?<SubCategory subCategories={data.subCategories} setComponent={setComponent}/>
-        : component=='division' ? <Division divisions={data.divisions} setComponent={setComponent}/>
+        : component=='subcategory'?<SubCategory subCategories={data.subCategories} setComponent={setComponent} categoryId={categoryId}/>
+        : component=='division' ? <Division divisions={data.divisions} setComponent={setComponent} setSubcategories={setSubcategories} setDivisions={setDivisions}/>
         : component=='subdivision'? <SubDivision subDivisions={data.subDivisions} setComponent={setComponent}/>
         :<Products/>
 

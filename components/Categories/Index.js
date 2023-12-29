@@ -22,6 +22,7 @@ const Index = (props) => {
                     setSubcategories(category.id)
                 }}>
                     {category.category}
+                    {category.id}
                 </Text>
                
             )
