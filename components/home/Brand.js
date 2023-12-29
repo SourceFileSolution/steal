@@ -9,26 +9,14 @@ import {
   Montserrat_600SemiBold,
   Montserrat_800ExtraBold,
 } from "@expo-google-fonts/montserrat";
-const Brand = () => {
+const Brand = (props) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef(null);
 
-  const data = [
-    { id: 1, image: require("../../assets/3.jpg") },
-    { id: 2, image: require("../../assets/7.png") },
-    { id: 3, image: require("../../assets/5.png") },
-    { id: 4, image: require("../../assets/4.png") },
-    { id: 5, image: require("../../assets/jsw.png") },
-    { id: 6, image: require("../../assets/6.png") },
-    { id: 7, image: require("../../assets/1.png") },
-    { id: 8, image: require("../../assets/2.jpg") },
-
-    // Add more images as needed
-  ];
-
   const renderItem = ({ item }) => (
     <View style={styles.imageContainer}>
-      <Image source={item.image} style={styles.image} />
+      <Image source={{uri:`https://sourcefilesolutions.com/steelghar/console/public/storage/${item.logo}`}}  style={styles.image} />
+
     </View>
   );
 
@@ -40,7 +28,7 @@ const Brand = () => {
   };
 
   const handleNext = () => {
-    if (currentIndex < data.length - 1) {
+    if (currentIndex < props.brands.length - 1) {
       carouselRef.current.snapToNext();
       setCurrentIndex(currentIndex + 1);
     }
@@ -72,7 +60,7 @@ const Brand = () => {
         />
         <Carousel
           ref={carouselRef}
-          data={data}
+          data={props.brands}
           renderItem={renderItem}
           sliderWidth={100}
           itemWidth={140}

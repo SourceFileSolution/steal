@@ -12,16 +12,18 @@ import {
   Montserrat_500Medium,
   Montserrat_600SemiBold,
 } from "@expo-google-fonts/montserrat";
-
 import LatestProducts from "../LatestProducts";
-
 import HomeCatogory from "../HomeCatogory";
 import Navbar from "../Navbar";
 import { perfectSize } from "../Login";
 import Brand from "./Brand";
 import ImageCarousel from "./Slider";
 
-const HomeContent = ({ navigation }) => {
+const HomeContent = (props,{navigation}) => {
+  console.log('hey banners')
+  console.log(props.banners)
+  // alert('h')
+
   let [fontsLoaded] = useFonts({
     Montserrat_500Medium,
     Montserrat_600SemiBold,
@@ -46,9 +48,9 @@ const HomeContent = ({ navigation }) => {
               <EvilIcons name="search" size={24} color="black" />
             </TouchableOpacity>
           </View>
-          <ImageCarousel />
-          <LatestProducts />
-          <Brand />
+          <ImageCarousel banners={props.banners}/>
+          <LatestProducts products={props.products}/>
+          <Brand brands={props.brands} />
           <HomeCatogory />
         </View>
       </ScrollView>

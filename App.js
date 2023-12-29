@@ -23,22 +23,24 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <>
-      {/* <NavigationContainer independent={true}>
+    <SafeAreaView style={{flex:1}}>
+      <NavigationContainer independent={true}>
      <Stack.Navigator screenOptions={{headerShown:false}} >
       <Stack.Screen name="Login page" component={Login} />
       <Stack.Screen name="OTP" component={Otp} />
       <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
-    </NavigationContainer> */}
+    </NavigationContainer>
+    </SafeAreaView>
       {/* <Login /> */}
       {/* <FabricatorRegistrations /> */}
       {/* <Signup /> */}
       {/* <Otp /> */}
-      <SafeAreaView style={{ flex: 1 }}>
+      {/* <SafeAreaView style={{ flex: 1 }}>
         <NavigationContainer>
           <Home />
         </NavigationContainer>
-      </SafeAreaView>
+      </SafeAreaView> */}
       {/* {/* <StatusBar style="dark" /> */}
     </>
   );

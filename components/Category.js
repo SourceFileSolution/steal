@@ -1,36 +1,37 @@
 import { View, Text } from "react-native";
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import CategoryContent from "./CategoryContent";
-import SubCategory from "./SubCategory";
-import Division from "./Division";
-import SubDivision from "./SubDivision";
-import Products from "./Products";
-import {
-  useFonts,
-  Montserrat_500Medium,
-  Montserrat_600SemiBold,
-  Montserrat_800ExtraBold,
-} from "@expo-google-fonts/montserrat";
-const Category = () => {
-  let [fontsLoaded] = useFonts({
-    Montserrat_500Medium,
-    Montserrat_600SemiBold,
-    Montserrat_800ExtraBold,
-  });
+import React, { useEffect, useState } from "react";
+import Index from "./Categories/Index";
+import SubCategory from "./Categories/SubCategory";
+import Division from "./Categories/Division";
+import SubDivision from "./Categories/SubDivision";
+import Products from "./Categories/Products";
+import data from "./Categories/data";
 
-  if (!fontsLoaded) {
-    return null;
-  }
-  const stack = createStackNavigator();
+const Category = () => {
+ 
+const [component, setComponent]=useState("category");
+const [categoryId,setCategoryId]=useState('');
+const [subCategories,setSubcategories]=useState('');
+  useEffect(()=>{
+alert("got cate id")
+  },[categoryId])
   return (
-    <stack.Navigator screenOptions={{ headerShown: false }}>
-      <stack.Screen name="Shop By Category" component={CategoryContent} />
-      <stack.Screen name="SubCategory" component={SubCategory} />
-      <stack.Screen name="Division" component={Division} />
-      <stack.Screen name="Subdivision" component={SubDivision} />
-      <stack.Screen name="Products" component={Products} />
-    </stack.Navigator>
+    
+    <View>
+      {
+        component=='category'?<Index categories={data.categories} setComponent={setComponent} setCategoryId={setCategoryId}/>
+        : component=='subcategory'?<SubCategory subCategories={data.subCategories} setComponent={setComponent}/>
+        : component=='division' ? <Division divisions={data.divisions} setComponent={setComponent}/>
+        : component=='subdivision'? <SubDivision subDivisions={data.subDivisions} setComponent={setComponent}/>
+        :<Products/>
+
+}
+      
+      
+     
+     
+      
+    </View>
   );
 };
 
