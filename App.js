@@ -1,36 +1,29 @@
-import { StyleSheet, Text, View } from "react-native";
-import Signup from "./components/Signup";
 
-import { StatusBar } from "expo-status-bar";
-import FabricatorRegistrations from "./components/FabricatorRegistrations";
-import Login from "./components/Login";
-import Otp from "./components/Otp";
-
-import TabNavigation from "./components/TabNavigation";
 import { SafeAreaView } from "react-native-safe-area-context";
-import HorizontalImageScroller from "./components/Category";
-import YourComponent from "./components/Category";
-import LeftMenu from "./components/LeftMenu";
-import DrawerNavigation from "./components/DrawerNavigation";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import DropdownExample from "./components/Sample";
 import Home from "./components/home/Home";
-
+import Cart from "./components/Cart";
 const Stack = createStackNavigator();
-
+import { store } from "./components/redux/store/Store";
+import { Provider } from "react-redux";
 export default function App() {
+  console.log("************* app ****************")
   return (
     <>
-    <SafeAreaView style={{flex:1}}>
+
+   <Provider store={store} >
+   <SafeAreaView style={{flex:1}}>
       <NavigationContainer independent={true}>
      <Stack.Navigator screenOptions={{headerShown:false}} >
-      <Stack.Screen name="Login page" component={Login} />
-      <Stack.Screen name="OTP" component={Otp} />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Cart" component={Cart} />
+
     </Stack.Navigator>
     </NavigationContainer>
     </SafeAreaView>
+   </Provider>
      
     </>
   );

@@ -34,7 +34,6 @@ const LatestProducts = (props) => {
               <View style={{ height: perfectSize(143) }}>
               <Image source={{uri:`https://sourcefilesolutions.com/steelghar/console/public/storage/${item.product_image}`}}  style={styles.logo} />
 
-                {/* <Image source={item.image} style={styles.logo} /> */}
               </View>
 
               <View style={{ flex: 1, marginVertical: perfectSize(12) }}>
@@ -48,7 +47,8 @@ const LatestProducts = (props) => {
                   >
                     Starts From
                   </Text>
-                  <Text style={[styles.cards.text]}>₹ 9000</Text>
+                  <Text style={[styles.cards.text]}>₹{item.low_price}</Text>
+
                 </View>
               </View>
             </View>

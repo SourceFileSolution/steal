@@ -1,35 +1,34 @@
-import { View, Text } from "react-native";
-import React, { useState } from "react";
+// import { View, Text } from "react-native";
+// import React, { useState } from "react";
 
-const Index = (props) => {
- const categories= props.categories;
+// const Index = (props) => {
+//  const categories= props.categories;
 
- const setSubcategories=(id)=>{
-    props.setCategoryId(id)
-    props.setComponent('subcategory')
+//  const setSubcategories=(id)=>{
+//     props.setCategoryId(id)
+//     props.setComponent('subcategory');
 
- }
- return (
+//  }
+//  return (
    
-    <View>
-      <Text >categories</Text>
-      {
-        categories.map((category, index)=>{
-            console.log(category.id);
-            return(
+//     <View>
+//       <Text >categories</Text>
+//       {
+//         categories.map((category, index)=>{
+//             return(
                 
-                <Text key={category.id} onPress={()=>{
-                    setSubcategories(category.id)
-                }}>
-                    {category.category}
-                    {category.id}
-                </Text>
+//                 <Text key={category.id} onPress={()=>{
+//                     setSubcategories(category.id)
+//                 }}>
+//                     {category.category_name}
+//                 </Text>
                
-            )
-        })
-      }
-    </View>
-  );
-};
+//             )
+//         })
+//       }
+//     </View>
+//   );
+// };
 
-export default Index;
+// export default Index;
+

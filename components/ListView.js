@@ -2,69 +2,8 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 import React from "react";
 import { perfectSize } from "./Login";
 
-const ListView = () => {
-  const data = [
-    {
-      id: 1,
-      image: require("../assets/20mm.png"),
-      name: "20mm_rebars",
-      price: "56,876.00",
-    },
-    {
-      id: 2,
-      image: require("../assets/8mm.jpg"),
-      name: "8mm_rebars ",
-      price: "58,056.00",
-    },
-    {
-      id: 3,
-      image: require("../assets/16mm.png"),
-      name: "16mm_rebars",
-      price: "56,876.00",
-    },
-    {
-      id: 4,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 5,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 6,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 7,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 8,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 9,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 10,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-  ];
+const ListView = (props) => {
+  // console.log("my list wiev", props.products);
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -81,7 +20,7 @@ const ListView = () => {
           <Text style={styles.headings}>Pieces</Text>
         </View>
       </View>
-      {data.map((item) => {
+      {props.products.map((item) => {
         return (
           <View
             style={[
@@ -92,7 +31,7 @@ const ListView = () => {
           >
             <View style={[styles.columns, { flex: 1.5 }]}>
               <Text style={styles.text} numberOfLines={1}>
-                {item.name}
+                {item.product_name}
               </Text>
             </View>
             <View style={styles.columns}>
@@ -104,7 +43,7 @@ const ListView = () => {
               >
                 Starts From
               </Text>
-              <Text style={styles.text}>{item.price}</Text>
+              <Text style={styles.text}>{item.low_price}</Text>
             </View>
             <View style={styles.columns}>
               <TextInput

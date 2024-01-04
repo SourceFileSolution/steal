@@ -36,9 +36,11 @@ const TabNavigation = () => {
             ),
           }}
         />
+        
         <tab.Screen
           name="Category"
-          component={Category}
+          // component={Category}
+          children={()=><Category tab='category' />}
           options={{
             tabBarLabel: "Category",
             headerShown: false,
@@ -46,12 +48,7 @@ const TabNavigation = () => {
               <MaterialIcons name="category" size={size} color={color} />
             ),
           }}
-          listeners={({ navigation }) => {
-            tabPress = (e) => {
-              e.preventDefault();
-              navigation.navigate("Category");
-            };
-          }}
+         
         />
         <tab.Screen
           name="Calculator"

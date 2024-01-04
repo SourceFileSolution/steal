@@ -23,55 +23,16 @@ const Homestack = () => {
   const [cart, setCart] = useState();
   const [wishlist, setWishlist] = useState();
   // const drawer = createDrawerNavigator();
-  const [isLoading,setIsLoading]=useState(true);
-  const[products,setProducts]=useState([]);
-  const[banners,setBanners]=useState([]);
-  const[brands,setBrands]=useState([]);
-  
-  useEffect(()=>{
-    fetchHomeData();
-  },[])
 
-  const fetchHomeData=async ()=>{
-
-    setIsLoading(true)
-
-    // let token =await AsyncStorage.getItem('token');
-    // token?token=token:token="guest user";
-
-    try {
-      const response = await axios({
-            method: 'get',
-            url: "https://sourcefilesolutions.com/steelghar/console/api/home-data",
-           
-            headers: {
-                "Content-Type": "multipart/form-data",
-                // Authorization: 'Bearer ' + crmToken,
-            },
-        });
-
-if(response.data.status=="success"){
-  console.log(444444444)
-  const homeData=response.data.homeData;
-  setProducts(homeData.latestProducts)
-  setBanners(homeData.banners)
-  setBrands(homeData.brands)
-console.log(homeData);
-
-}
-
-
-    } catch (error) {
-      console.log(error)
-    }finally{
-      setIsLoading(false)
-    }
-  }
 
  
   return (
-    <stack.Navigator screenOptions={{ headerShown: false }}>
-      <stack.Screen name="home" component={()=><HomeContent banners={banners} products={products} brands={brands}/>} />
+    <>
+    {/* {
+      isLoading ? "lo":"no"
+    } */}
+     <stack.Navigator screenOptions={{ headerShown: false }}>
+      <stack.Screen name="home" component={()=><HomeContent />} />
       <stack.Screen name="Wishlist" component={Wishlist3} />
       <stack.Screen name="Cart" component={Cart1} />
       <stack.Screen name="leftmenu" component={LeftMenu} />
@@ -85,6 +46,8 @@ console.log(homeData);
         component={FabricatorRegistrations}
       />
     </stack.Navigator>
+    </>
+   
   );
 };
 

@@ -6,28 +6,54 @@ import {
   TouchableOpacity,
   Modal,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { perfectSize } from "./Login";
 import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import {useDispatch} from 'react-redux'
 import {
   useFonts,
   Montserrat_500Medium,
   Montserrat_600SemiBold,
   Montserrat_800ExtraBold,
 } from "@expo-google-fonts/montserrat";
-
 import Grid from "./Grid";
 import ListView from "./ListView";
 import Navbar from "./Navbar";
 import { Ionicons } from "@expo/vector-icons";
+import { addItemToCart } from "./redux/action/Action";
 
-const Products = ({ navigation }) => {
+const Products = ({ navigation,setComponent,products,categoryId,subCategoryId,divisionId,subDivisionId }) => {
+  // console.log(products)
+  // console.log("categoryId",categoryId)
+  // console.log("subCategoryId",subCategoryId)
+  // console.log("divisionId",divisionId)
+  // console.log("subDivisionId",subDivisionId)
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [grid, setGrid] = useState(true);
+const[filteredProducts, setFilterProducts]=useState([]);
+  useEffect(()=>{
+    let productsData;
+     productsData= products.filter((product)=>
+{
+  return product.category_id==categoryId && product.subcategory_id==subCategoryId;
+}
 
+    )
+
+    if(divisionId)  productsData= products.filter((product)=>
+    {
+      return product.division_id==divisionId;
+    })
+
+    if(subDivisionId)  productsData= products.filter((product)=>
+    {
+      return product.subdivision_id==subDivisionId;
+    })
+
+    setFilterProducts(productsData)
+  },[categoryId,subCategoryId,divisionId,subDivisionId])
   let [fontsLoaded] = useFonts({
     Montserrat_500Medium,
     Montserrat_600SemiBold,
@@ -38,8 +64,8 @@ const Products = ({ navigation }) => {
     return null;
   }
   const options = [
-    { label: "Price : Low to High", value: "Price : Low to High" },
-    { label: "Price : High to Low", value: "Price : High to Low" },
+    { label: "Price : Low to High", value: "lh" },
+    { label: "Price : High to Low", value: "hl" },
   ];
 
   const toggleDropdown = () => {
@@ -47,16 +73,36 @@ const Products = ({ navigation }) => {
   };
 
   const handleOptionSelect = (value) => {
+
+    if(value=='lh')
+    {
+      
+      setFilterProducts(filteredProducts.sort((val1, val2)=>{
+        return val1.low_price - val2.low_price;
+      })  
+        
+       )
+    }
+    else if(value=='hl')
+    {
+      setFilterProducts(filteredProducts.sort((val1, val2)=>{
+        return val2.low_price - val1.low_price;
+      })  
+        
+       )
+    }
     setSelectedOption(value);
     setDropdownVisible(false);
   };
+
+  
   return (
     <>
       <Navbar navigation={navigation} />
       <View style={styles.header}>
         <TouchableOpacity
           style={{ paddingLeft: perfectSize(15) }}
-          onPress={() => navigation.pop()}
+          onPress={() => setComponent('subdivision')}
         >
           <Ionicons name="arrow-back" size={perfectSize(26)} color="black" />
         </TouchableOpacity>
@@ -125,7 +171,7 @@ const Products = ({ navigation }) => {
             </View>
           </View>
 
-          {grid ? <Grid /> : <ListView />}
+          {grid ? <Grid products={filteredProducts} /> : <ListView products={filteredProducts} />}
           <View style={styles.note}>
             <View style={{ flex: 0.14 }}>
               <Text

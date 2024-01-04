@@ -5,96 +5,73 @@ import {
   ScrollView,
   Image,
   TextInput,
+  TouchableOpacity,
+  Modal
 } from "react-native";
-import React from "react";
+import React,{useState} from "react";
 import { perfectSize } from "./Login";
+import { Ionicons } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { addItemToCart } from "./redux/action/Action";
+import {useDispatch} from 'react-redux'
+import { createSlice } from "@reduxjs/toolkit";
 
-const Grid = () => {
-  const data = [
-    {
-      id: 1,
-      image: require("../assets/20mm.png"),
-      name: "20mm_rebars",
-      price: "56,876.00",
-    },
-    {
-      id: 2,
-      image: require("../assets/8mm.jpg"),
-      name: "8mm_rebars ",
-      price: "58,056.00",
-    },
-    {
-      id: 3,
-      image: require("../assets/16mm.png"),
-      name: "16mm_rebars",
-      price: "56,876.00",
-    },
-    {
-      id: 4,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 5,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 6,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 7,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 8,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 9,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-    {
-      id: 10,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
+const initialState={
+  cartItems:[],
+
+}
+
+const Grid = (props,{navigation}) => {
+
+  
+  // console.log("my product", props.products);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const [selectedOption, setSelectedOption] = useState("");
+  const options = [
+    { label: "Price : Myntra", value: "m" },
+    { label: "Price : amazon", value: "a" },
   ];
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+  const handleOptionSelect = (value) => {
+
+    alert('brand')
+    setDropdownVisible(false);
+
+  };
+  const dispatch=useDispatch();
+  const addItem=(item)=>{
+    dispatch(addItemToCart(item))
+  }
   return (
     // <ScrollView showsVerticalScrollIndicator={false}>
     <View style={styles.cardcontainer}>
-      {data.map((item) => {
+      {props.products.map((product) => {
         return (
-          <View style={styles.cards} key={item.id}>
+          <View style={styles.cards} key={product.id}>
             <View style={{ height: perfectSize(143) }}>
-              <Image source={item.image} style={styles.logo} />
+            <Image source={{uri:`https://sourcefilesolutions.com/steelghar/console/public/storage/${product.product_image}`}}  style={styles.logo} />
+
               <View style={styles.name}>
                 <Text style={[styles.cards.text, { color: "white" }]}>
-                  {item.name}
+                  {product.product_name}
                 </Text>
               </View>
             </View>
             <View style={styles.secondContainer}>
               <Text style={styles.cards.text}>Price Starts From</Text>
+              
+
               <Text
                 style={[
                   styles.cards.text,
                   { fontFamily: "Montserrat_600SemiBold" },
                 ]}
               >
-                ₹{item.price}
+                ₹{product.low_price}
               </Text>
             </View>
             <View style={styles.thirdContainer}>
@@ -113,6 +90,98 @@ const Grid = () => {
                 />
               </View>
             </View>
+            <View style={{ flex: 0, marginLeft: perfectSize(10) }}>
+              <TouchableOpacity
+                style={styles.selectbutton}
+                onPress={toggleDropdown}
+
+              >
+                <Text
+                  style={{
+                    fontFamily: "Montserrat_500Medium",
+                    fontSize: perfectSize(14),
+                  }}
+                >
+                  Select Brand
+                </Text>
+                <Ionicons
+                  name="chevron-down"
+                  size={perfectSize(24)}
+                  color="black"
+                />
+              </TouchableOpacity>
+            </View>
+            <Modal
+        visible={dropdownVisible}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setDropdownVisible(false)}
+      >
+        <SafeAreaView style={{flex:1}}>
+        <View style={styles.modelcontainer}>
+          <View
+            style={{ backgroundColor: "white", padding: 20, borderRadius: 10 }}
+          >
+            {options.map((option) => (
+              <TouchableOpacity
+                key={option.value}
+                onPress={() => handleOptionSelect(option.value)}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginVertical: 10,
+                  }}
+                >
+                  <Text
+                    style={{
+                      marginRight: 10,
+                      fontFamily: "Montserrat_500Medium",
+                      fontSize: perfectSize(16),
+                    }}
+                  >
+                    {option.label}
+                  </Text>
+                  <View style={{ flex: 1, alignItems: "flex-end" }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderWidth: 1,
+                        borderRadius: 10,
+                        borderColor: "red",
+                      }}
+                    >
+                      {selectedOption === option.value && (
+                        <View
+                          style={{
+                            flex: 1,
+                            backgroundColor: "red",
+                            borderRadius: 10,
+                          }}
+                        />
+                      )}
+                    </View>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+        </SafeAreaView>
+      </Modal>
+            <View >
+        <TouchableOpacity style={styles.proceed.button}>
+          <Text onPress={()=>{addItem(item)}} style={styles.proceed.text}>Add To Cart</Text>
+        </TouchableOpacity>
+      </View>
+      <View >
+        <TouchableOpacity style={styles.proceed.button}>
+          <Text onPress={()=>{navigation.navigate('Cart')}} style={styles.proceed.text}>see data</Text>
+        </TouchableOpacity>
+      </View>
+      
           </View>
         );
       })}
@@ -129,6 +198,33 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginVertical: perfectSize(10),
     backgroundColor: "white",
+  },
+  buttons: {
+    backgroundColor: "white",
+    flexDirection: "row",
+    width: "auto",
+    marginBottom: perfectSize(10),
+  },
+  proceed: {
+    position: "absolute",
+    bottom: 20,
+    alignSelf: "center",
+    button: {
+      backgroundColor: "red",
+      width: perfectSize(160),
+      height: perfectSize(40),
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 5,
+      marginTop:(0),
+      margin:(10)
+      
+    },
+    text: {
+      color: "white",
+      fontFamily: "Montserrat_500Medium",
+      fontSize: perfectSize(16),
+    },
   },
   cards: {
     // padding: perfectSize(8),
@@ -161,6 +257,17 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: perfectSize(3),
   },
+  selectbutton: {
+    backgroundColor: "whitesmoke",
+    width: perfectSize(160),
+    height: perfectSize(40),
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    marginLeft:(1),
+    margin:(10),
+    flexDirection:'row'
+  },
   price: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -189,6 +296,11 @@ const styles = StyleSheet.create({
       borderColor: "gray",
       padding: perfectSize(10),
       justifyContent: "center",
+    },
+    modelcontainer: {
+      flex: 1,
+      justifyContent: "flex-end",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
   },
 });

@@ -11,77 +11,26 @@ import { perfectSize } from "./Login";
 import { AntDesign } from "@expo/vector-icons";
 import Navbar from "./Navbar";
 import { Ionicons } from "@expo/vector-icons";
-const SubCategoryContent = ({ route, navigation }) => {
-  const id = route.params.id;
+const SubCategoryContent = ({ route, navigation,categoryId,setComponent,subCategories,setSubCategoryId }) => {
+  // const id = route.params.id;
 
-  const data = [
-    {
-      id: 1,
-      subid: 1,
-      category: 1,
-      image: require("../assets/slider.jpg"),
-      name: "SubCategory Name",
-      productscount: "1000 products",
-    },
-    {
-      id: 2,
-      category: 2,
-      subid: 2,
-      image: require("../assets/8mm.jpg"),
-      name: "SubCategory Name",
-      productscount: "2000 products",
-    },
-    {
-      id: 3,
-      subid: 3,
-      category: 1,
-      image: require("../assets/16mm.png"),
-      name: "SubCategory Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 4,
-      subid: 4,
-      category: 3,
-      image: require("../assets/32mm.png"),
-      name: "SubCategory Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 5,
-      subid: 1,
-      category: 5,
-      image: require("../assets/20mm.png"),
-      name: "SubCategory Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 6,
-      subid: 1,
-      category: 2,
-      subid: 2,
-      image: require("../assets/16mm.png"),
-      name: "SubCategory Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 7,
-      subid: 1,
-      category: 1,
-      image: require("../assets/16mm.png"),
-      name: "SubCategory Name",
-      productscount: "3000 products",
-    },
-  ];
-  //   const id = 1;
 
+  const filteredSubCategories= subCategories.filter((subcategory)=>{
+    return subcategory.category_id==categoryId
+      })
+     
+     const setDivisions=(id)=>{
+      setSubCategoryId(id)
+      setComponent('division')
+    
+    }
   return (
     <>
-      <Navbar navigation={navigation} />
+      <Navbar  />
       <View style={styles.header}>
         <TouchableOpacity
           style={{ paddingLeft: perfectSize(15) }}
-          onPress={() => navigation.pop()}
+          onPress={() => setComponent('category')}
         >
           <Ionicons name="arrow-back" size={perfectSize(26)} color="black" />
         </TouchableOpacity>
@@ -95,25 +44,15 @@ const SubCategoryContent = ({ route, navigation }) => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          {data
-            .filter((item) => item.category == id)
-            .map((item) => {
+          {filteredSubCategories?.map((subcategory, index) => {
               return (
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("Division", { id: item.subid })
-                  }
-                  key={item.id}
+                  key={subcategory.id} onPress={()=>{
+                    setDivisions(subcategory.id)
+                }}
                 >
                   <View style={styles.categorycontainer}>
-                    {/* <View
-                      style={{
-                        width: perfectSize(90),
-                        height: perfectSize(80),
-                      }}
-                    >
-                      <Image source={item.image} style={styles.image} />
-                    </View> */}
+                   
                     <View style={styles.content}>
                       <Text
                         style={[
@@ -121,7 +60,7 @@ const SubCategoryContent = ({ route, navigation }) => {
                           { fontFamily: "Montserrat_600SemiBold" },
                         ]}
                       >
-                        {item.name}
+                        {subcategory.subcategory_name}
                       </Text>
                       <Text
                         style={[
@@ -132,7 +71,7 @@ const SubCategoryContent = ({ route, navigation }) => {
                           },
                         ]}
                       >
-                        {item.productscount}
+                        {subcategory.subcategory_name}
                       </Text>
                     </View>
                     <View style={{ flex: 1, alignItems: "flex-end" }}>

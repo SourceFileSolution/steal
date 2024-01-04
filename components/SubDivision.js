@@ -5,94 +5,29 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { perfectSize } from "./Login";
-
 import { AntDesign } from "@expo/vector-icons";
 import Navbar from "./Navbar";
 import { Ionicons } from "@expo/vector-icons";
-const SubDivisionContent = ({ route, navigation }) => {
-  const id = 1;
-
-  const data = [
-    {
-      id: 1,
-      category: 1,
-      image: require("../assets/slider.jpg"),
-      name: "SubDivision Name",
-      productscount: "1000 products",
-    },
-    {
-      id: 2,
-      category: 2,
-      image: require("../assets/8mm.jpg"),
-      name: "SubDivision Name",
-      productscount: "2000 products",
-    },
-    {
-      id: 3,
-      category: 1,
-      image: require("../assets/16mm.png"),
-      name: "SubDivision Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 4,
-      category: 3,
-      image: require("../assets/32mm.png"),
-      name: "SubDivision Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 5,
-      category: 5,
-      image: require("../assets/20mm.png"),
-      name: "SubDivision Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 6,
-      category: 2,
-      image: require("../assets/16mm.png"),
-      name: "SubDivision Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 7,
-      category: 2,
-      image: require("../assets/16mm.png"),
-      name: "SubDivision Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 8,
-      category: 1,
-      image: require("../assets/16mm.png"),
-      name: "SubDivision Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 9,
-      category: 2,
-      image: require("../assets/16mm.png"),
-      name: "SubDivision Name",
-      productscount: "3000 products",
-    },
-    {
-      id: 10,
-      category: 1,
-      image: require("../assets/16mm.png"),
-      name: "SubDivision Name",
-      productscount: "3000 products",
-    },
-  ];
+const SubDivisionContent = ({ route, navigation,subDivisions,divisionId,setComponent,subDivisionId,setSubDivisionId }) => {
+ 
+  const filteredSubDivisions= subDivisions.filter((subdivision)=>{
+    return subdivision.division_id==divisionId
+      })
+     
+     const setSubDivisions=(id)=>{
+      setSubDivisionId(id)
+      setComponent('products')
+    
+    }
   return (
     <>
       <Navbar navigation={navigation} />
       <View style={styles.header}>
         <TouchableOpacity
           style={{ paddingLeft: perfectSize(15) }}
-          onPress={() => navigation.pop()}
+          onPress={() => setComponent('division')}
         >
           <Ionicons name="arrow-back" size={perfectSize(26)} color="black" />
         </TouchableOpacity>
@@ -106,25 +41,14 @@ const SubDivisionContent = ({ route, navigation }) => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          {data
-            .filter((item) => item.category == id)
-            .map((item) => {
+          {filteredSubDivisions.map((subdivision,index) => {
               return (
                 <TouchableOpacity
-                  key={item.id}
-                  onPress={() =>
-                    navigation.navigate("Products", { id: item.category })
-                  }
+                key={subdivision.id} onPress={()=>{
+                  setSubDivisions(subdivision.id)
+              }}
                 >
                   <View style={styles.categorycontainer}>
-                    {/* <View
-                      style={{
-                        width: perfectSize(90),
-                        height: perfectSize(80),
-                      }}
-                    >
-                      <Image source={item.image} style={styles.image} />
-                    </View> */}
                     <View style={styles.content}>
                       <Text
                         style={[
@@ -132,7 +56,7 @@ const SubDivisionContent = ({ route, navigation }) => {
                           { fontFamily: "Montserrat_600SemiBold" },
                         ]}
                       >
-                        {item.name}
+                        {subdivision.subdivision_name}
                       </Text>
                       <Text
                         style={[
@@ -143,7 +67,7 @@ const SubDivisionContent = ({ route, navigation }) => {
                           },
                         ]}
                       >
-                        {item.productscount}
+                        {subdivision.slug}
                       </Text>
                     </View>
                     <View style={{ flex: 1, alignItems: "flex-end" }}>
